@@ -32,11 +32,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                 throw modelStateErrors.flat();
               }
               else{
-                this.toastr.error(error.error, error.status.toString());
+                // this.toastr.error(error.error, error.status.toString());
               }
               break;
               case 401:
-                this.toastr.error('Unauthorised', error.status.toString());
+                // this.toastr.error('Unauthorised', error.status.toString());
                 break;
               case 404:
                 this.router.navigateByUrl('/not-found');
@@ -46,9 +46,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.router.navigateByUrl('/server-error', navigationExtras);
                 break;
               default:
-                this.toastr.error('Somethin unexpected went wrong.');
+                // this.toastr.error('Something unexpected went wrong.');
                 console.log(error);
                 break;
+
           }
 
         }
