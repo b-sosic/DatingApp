@@ -9,6 +9,7 @@ using System.Reflection.Metadata;
 using AutoMapper;
 using API.DTOs;
 using System.Diagnostics.CodeAnalysis;
+using System.Security.Claims;
 
 namespace API.Controllers
 {
@@ -37,8 +38,20 @@ namespace API.Controllers
     {
         return await _userRepository.GetMemberAsync(username);
 
-        
+    }
+    [HttpPut]
+    public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
+    {
+        var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var user = await _userRepository.GetUserByUsernameAsync(username);
 
+        if(user == null) return NotFound();
+
+        _mapper.Map(memberUpdateDto, user);
+
+        if(await _userRepository.SaveAllAsync()) return NoContent();
+
+        return BadRequest("Failed to update user");
     }
 
 }
