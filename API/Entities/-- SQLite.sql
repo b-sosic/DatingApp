@@ -1,9 +1,9 @@
 -- SQLite
-INSERT INTO MyProperty (Id, UserName)
+INSERT INTO Users (Id, UserName)
 VALUES (1, "Bob");
 
-INSERT INTO MyProperty (Id, UserName)
+INSERT INTO Users (Id, UserName)
 VALUES (2, "Tom");
 
-INSERT INTO MyProperty (Id, UserName)
+INSERT INTO Users (Id, UserName)
 VALUES (3, "Jane");

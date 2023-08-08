@@ -24,9 +24,12 @@ namespace API.Controllers
       private readonly IPhotoService _photoService;
       public UsersController(IUserRepository userRepository, IMapper mapper, IPhotoService photoService )
       {
+        _photoService = photoService;
         _userRepository = userRepository;
         _mapper = mapper;
     }
+
+
    // [AllowAnonymous]
     [HttpGet]
     public async Task<ActionResult<PagedList<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
@@ -45,6 +48,7 @@ namespace API.Controllers
  
         // return BadRequest();
     }
+    
     [HttpGet("{username}")]
     public async Task<ActionResult<MemberDto>> GetUser(string username)
     {
